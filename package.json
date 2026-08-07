@@ -1,0 +1,13 @@
+{
+  "name": "tech-notes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import": "node scripts/run-python.mjs scripts/import-chatgpt-share.py",
+    "check": "node --check scripts/run-python.mjs && node scripts/run-python.mjs -m py_compile scripts/import-chatgpt-share.py"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

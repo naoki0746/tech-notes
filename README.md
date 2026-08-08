@@ -11,8 +11,6 @@ aws/       AWS関連
 azure/     Azure関連
 windows/   Windows / RDP / AD など
 linux/     Linux / RHEL / systemd など
-network/   DNS / Load Balancer / Firewall など
-security/  IAM / 脆弱性 / 監査 など
 templates/ メモ用テンプレート
 scripts/   取り込み用スクリプト
 ```

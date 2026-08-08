@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 
-VALID_CATEGORIES = {"aws", "azure", "windows", "linux", "network", "security"}
+VALID_CATEGORIES = {"aws", "azure", "windows", "linux"}
 
 
 def main():

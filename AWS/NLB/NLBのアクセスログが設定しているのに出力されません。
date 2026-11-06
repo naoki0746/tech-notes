@@ -1,0 +1,18 @@
+## NLBのアクセスログはTLSリスナーのみ
+
+Network Load Balancer（NLB）のアクセスログは、**TLSリスナーが設定されている場合のみ生成される**。
+
+そのため、443番ポートを使用していても、リスナーが `TCP:443` の場合はアクセスログは生成されない。
+
+- `TLS:443` → アクセスログ出力対象
+- `TCP:443` → アクセスログ出力対象外
+
+`TCP:443` の場合、NLBはTLSを終端せず、TCP通信を後段へ転送する。
+
+そのため、NLB側でアクセスログを有効化し、出力先S3を設定していてもログは出力されない。
+
+### AWS公式ドキュメント
+
+[Network Load Balancer のアクセスログ](https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/network/load-balancer-access-logs.html)
+
+> Access logs are created only if the load balancer has a TLS listener and they contain information only about TLS requests.

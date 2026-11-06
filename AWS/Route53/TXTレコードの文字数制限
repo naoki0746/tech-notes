@@ -1,0 +1,77 @@
+# Route 53のTXTレコードと255文字制限
+
+## TXTレコードの255文字制限
+
+Amazon Route 53の公式ドキュメントでは、TXTレコードについて以下のように記載されている。
+
+> “A single string can include up to 255 characters”
+
+つまり、Route 53では**TXTレコードの1つの文字列に最大255文字まで**登録できる。
+
+255文字を超える値については、AWS公式ドキュメントで以下のように説明されている。
+
+> “break the value into strings of 255 characters or fewer”
+
+そのため、255文字を超える場合は、**255文字以下の複数の文字列に分割して登録する**。
+
+例えば以下の形式。
+
+```text
+"String 1" "String 2" "String 3"
+```
+
+この場合、複数の文字列に分かれているが、Route 53では**1つのTXT値として登録する**。
+
+## 複数のTXT値を登録する場合
+
+Route 53では、複数のTXT値を登録する場合について以下のように説明されている。
+
+> “To enter more than one TXT value, enter one value per row.”
+
+つまり、**複数のTXT値を登録する場合は1行につき1つの値を入力する**。
+
+### 1つのTXT値を分割する場合
+
+```text
+"AAA" "BBB"
+```
+
+同じ行に記載する。
+
+```text
+TXT値①
+└─ "AAA" + "BBB"
+```
+
+### 複数のTXT値を登録する場合
+
+```text
+"AAA"
+"BBB"
+```
+
+別々の行に記載する。
+
+```text
+TXT値①
+└─ "AAA"
+
+TXT値②
+└─ "BBB"
+```
+
+この2つは見た目が似ているが、Route 53上では意味が異なるため注意する。
+
+## ポイント
+
+- Route 53では**1つの文字列は最大255文字**
+- 255文字を超える場合は、255文字以下に分割する
+- 分割した文字列を**同じ行**に記載すれば1つのTXT値として登録できる
+- 複数のTXT値を登録する場合は**1行につき1つの値**を入力する
+- `"AAA" "BBB"` と `"AAA"` / `"BBB"` の2行は意味が異なる
+
+## 公式ドキュメント
+
+[Amazon Route 53 - Supported DNS record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
+
+「TXT record type」→「Entering TXT record values」を参照。

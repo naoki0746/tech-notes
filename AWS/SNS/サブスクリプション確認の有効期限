@@ -1,0 +1,22 @@
+    # Amazon SNS サブスクリプション確認の有効期限
+
+Amazon SNSでサブスクリプションを作成した際、HTTP/HTTPSやEメールなどではサブスクリプションの確認が必要になります。
+
+## 確認トークンの有効期限
+
+サブスクリプション確認に使用するトークンの有効期限は **2日間** です。
+
+AWS公式ドキュメントには以下の記載があります。
+
+> Confirmation tokens are valid for two days.
+
+日本語訳：
+
+> 確認トークンは2日間有効です。
+
+そのため、サブスクリプション作成後は **2日以内に確認を完了する必要があります**。
+
+## 公式ドキュメント
+
+AWS公式：Amazon SNS - Subscribe API Reference  
+https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html
